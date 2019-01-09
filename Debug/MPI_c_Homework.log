@@ -1,0 +1,8 @@
+﻿sy2_0.obj : error LNK2005: _main 已经在 barriertest.obj 中定义
+sy2_1.obj : error LNK2005: _main 已经在 barriertest.obj 中定义
+sy2_2.obj : error LNK2005: _main 已经在 barriertest.obj 中定义
+sy2_3.obj : error LNK2005: _main 已经在 barriertest.obj 中定义
+testsy.obj : error LNK2005: _main 已经在 barriertest.obj 中定义
+sy3_1.obj : error LNK2005: _main 已经在 barriertest.obj 中定义
+LIBCMTD.lib(exe_winmain.obj) : error LNK2019: 无法解析的外部符号 _WinMain@16，该符号在函数 "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ) 中被引用
+D:\Project\并行计算\code\MPI_c_Homework\Debug\MPI_c_Homework.exe : fatal error LNK1120: 1 个无法解析的外部命令
