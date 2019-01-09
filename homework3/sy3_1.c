@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
 	int m, n, k, tmp, i, j, subm, subn, numprocs, myid;
 	int *a, *b, *p, *local_a, *local_b;
 	double ts, te;
-	FILE *fpa, *fpb, *output, *time;
+	FILE *fpa, *fpb, *fp, *output, *time;
 
 	MPI_Init(&argc, &argv);
 	MPI_Comm_size(MPI_COMM_WORLD, &numprocs);
@@ -19,18 +19,24 @@ int main(int argc, char *argv[])
 	{
 		time = fopen("time", "a");
 		output = fopen("output", "a");
-		fpa = fopen("A", "r");
-		fpb = fopen("B", "r");
-		fscanf(fpa, "row=%d", &m);
-		fscanf(fpa, "col=%d", &k);
-		fscanf(fpb, "row=%d", &tmp);
-		fscanf(fpb, "col=%d", &n);
-		if (tmp!=k)
+		fp = fopen("parameter", "r");
+		fscanf(fp, "m=%d", &m);
+		fscanf(fp, "n=%d", &n);
+		fscanf(fp, "k=%d", &k);
+		fscanf(fp, "numprocs=%d", &tmp);
+		fscanf(fp, "subm=%d", &subm);
+		fscanf(fp, "subn=%d", &subn);
+		if (tmp!=numprocs)
 		{
-			perror("Interior dimension must be conssitent!");
+			perror("Num of process ERROR!\n");
 			exit(EXIT_FAILURE);
 		}
-		
+		if (subm*subn != numprocs || m % subm != 0 || n % subn != 0)
+		{
+			perror("Parameter ERROR!\n");
+			exit(EXIT_FAILURE);
+		}
+
 	}
 
 	return 0;
