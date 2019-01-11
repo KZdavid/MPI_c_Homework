@@ -1,0 +1,34 @@
+﻿  sy3_1.c
+d:\project\并行计算\code\mpi_c_homework\homework3\sy3_1.c(21): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  d:\windows kits\10\include\10.0.17134.0\ucrt\stdio.h(208): note: 参见“fopen”的声明
+d:\project\并行计算\code\mpi_c_homework\homework3\sy3_1.c(22): error C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  d:\windows kits\10\include\10.0.17134.0\ucrt\stdio.h(1197): note: 参见“fscanf”的声明
+d:\project\并行计算\code\mpi_c_homework\homework3\sy3_1.c(23): error C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  d:\windows kits\10\include\10.0.17134.0\ucrt\stdio.h(1197): note: 参见“fscanf”的声明
+d:\project\并行计算\code\mpi_c_homework\homework3\sy3_1.c(24): error C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  d:\windows kits\10\include\10.0.17134.0\ucrt\stdio.h(1197): note: 参见“fscanf”的声明
+d:\project\并行计算\code\mpi_c_homework\homework3\sy3_1.c(25): error C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  d:\windows kits\10\include\10.0.17134.0\ucrt\stdio.h(1197): note: 参见“fscanf”的声明
+d:\project\并行计算\code\mpi_c_homework\homework3\sy3_1.c(26): error C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  d:\windows kits\10\include\10.0.17134.0\ucrt\stdio.h(1197): note: 参见“fscanf”的声明
+d:\project\并行计算\code\mpi_c_homework\homework3\sy3_1.c(27): error C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  d:\windows kits\10\include\10.0.17134.0\ucrt\stdio.h(1197): note: 参见“fscanf”的声明
+d:\project\并行计算\code\mpi_c_homework\homework3\sy3_1.c(63): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  d:\windows kits\10\include\10.0.17134.0\ucrt\stdio.h(208): note: 参见“fopen”的声明
+d:\project\并行计算\code\mpi_c_homework\homework3\sy3_1.c(68): error C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  d:\windows kits\10\include\10.0.17134.0\ucrt\stdio.h(1197): note: 参见“fscanf”的声明
+d:\project\并行计算\code\mpi_c_homework\homework3\sy3_1.c(80): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  d:\windows kits\10\include\10.0.17134.0\ucrt\stdio.h(208): note: 参见“fopen”的声明
+d:\project\并行计算\code\mpi_c_homework\homework3\sy3_1.c(86): error C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  d:\windows kits\10\include\10.0.17134.0\ucrt\stdio.h(1197): note: 参见“fscanf”的声明
+d:\project\并行计算\code\mpi_c_homework\homework3\sy3_1.c(9): warning C4101: “pa”: 未引用的局部变量
+d:\project\并行计算\code\mpi_c_homework\homework3\sy3_1.c(10): warning C4101: “output”: 未引用的局部变量
+d:\project\并行计算\code\mpi_c_homework\homework3\sy3_1.c(9): warning C4101: “pbuf”: 未引用的局部变量
+d:\project\并行计算\code\mpi_c_homework\homework3\sy3_1.c(9): warning C4101: “buf”: 未引用的局部变量
+d:\project\并行计算\code\mpi_c_homework\homework3\sy3_1.c(10): warning C4101: “time”: 未引用的局部变量
+d:\project\并行计算\code\mpi_c_homework\homework3\sy3_1.c(8): warning C4101: “l”: 未引用的局部变量
+d:\project\并行计算\code\mpi_c_homework\homework3\sy3_1.c(9): warning C4101: “local_b”: 未引用的局部变量
+d:\project\并行计算\code\mpi_c_homework\homework3\sy3_1.c(9): warning C4101: “te”: 未引用的局部变量
+d:\project\并行计算\code\mpi_c_homework\homework3\sy3_1.c(9): warning C4101: “pb”: 未引用的局部变量
+d:\project\并行计算\code\mpi_c_homework\homework3\sy3_1.c(9): warning C4101: “local_mp”: 未引用的局部变量
+d:\project\并行计算\code\mpi_c_homework\homework3\sy3_1.c(9): warning C4101: “mp”: 未引用的局部变量

@@ -15,6 +15,17 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <None Include="A">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="B">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="parameter">
+      <Filter>资源文件</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="..\homework3\sy3_1.c">
       <Filter>源文件</Filter>
     </ClCompile>
