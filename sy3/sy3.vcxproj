@@ -118,12 +118,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="A" />
-    <None Include="B" />
-    <None Include="parameter" />
+    <ClCompile Include="..\homework3\sy3_1.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\homework3\sy3_1.c" />
+    <None Include="..\homework3\A" />
+    <None Include="..\homework3\B" />
+    <None Include="..\homework3\output" />
+    <None Include="..\homework3\parameter" />
+    <None Include="..\homework3\time" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

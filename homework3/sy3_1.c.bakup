@@ -36,8 +36,9 @@ int main(int argc, char *argv[])
 			perror("Parameter ERROR!\n");
 			exit(EXIT_FAILURE);
 		}
+		//printf("m=%d,n=%d,k=%d,numprocs=%d,blockm=%d,blockn=%d\n", m, n, k, numprocs, blockm, blockn);
 	}
-	//Broadcast data size
+
 	MPI_Bcast(&k, 1, MPI_INT, 0, MPI_COMM_WORLD);
 	MPI_Bcast(&blockm, 1, MPI_INT, 0, MPI_COMM_WORLD);
 	MPI_Bcast(&blockn, 1, MPI_INT, 0, MPI_COMM_WORLD);
@@ -47,7 +48,7 @@ int main(int argc, char *argv[])
 	subn = n / blockn;
 	local_a = (double*)malloc(sizeof(double)*subm*k);
 	local_b = (double*)malloc(sizeof(double)*k*subn);
-	//procs 0 & 1 read A & B
+
 	if (myid == 0)
 	{
 		a = (double *)malloc(sizeof(double)*(m*k));
@@ -62,7 +63,18 @@ int main(int argc, char *argv[])
 			}
 		}
 		fclose(fp);
+		/*
+		p = &(a[0]);
+		for (i = 0; i < m*k; i++)
+		{
+			printf("a[%d]=%f,", i, *p);
+			p++;
+		}
+		printf("\n");
+		*/
+
 	}
+
 	if (myid == 1)
 	{
 		b = (double *)malloc(sizeof(double)*(n*k));
@@ -77,10 +89,19 @@ int main(int argc, char *argv[])
 			}
 		}
 		fclose(fp);
+		/*
+		p = &(b[0]);
+		for (i = 0; i < n*k; i++)
+		{
+			printf("b[%d]=%f,", i, *p);
+			p++;
+		}
+		printf("\n");
+		*/
 	}
 
-	//allocate all data & send them to every proc
 	MPI_Barrier(MPI_COMM_WORLD);
+
 	if (myid == 0)
 	{
 		for (i = 0; i < blockm; i++)
@@ -96,6 +117,7 @@ int main(int argc, char *argv[])
 	{
 		printf("recv worng in %d of tag %d", myid, status1.MPI_TAG);
 	}
+
 	if (myid == 1)
 	{
 		for (i = 0; i < blockm; i++)
@@ -111,6 +133,12 @@ int main(int argc, char *argv[])
 	{
 		printf("recv worng in %d of tag %d", myid, status2.MPI_TAG);
 	}
+
+	//MPI_Scatter(a, subm*k, MPI_DOUBLE, local_a, subm*k, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+	//MPI_Barrier(MPI_COMM_WORLD);
+	//MPI_Scatter(b, subn*k, MPI_DOUBLE, local_b, subn*k, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+	//printf("id=%d,blockm=%d,blockn=%d,subm=%d,subn=%d,k=%d\n", myid, blockm, blockn, subm, subn, k);
+
 	if (myid == 0)
 	{
 		free(a);
@@ -119,11 +147,33 @@ int main(int argc, char *argv[])
 	{
 		free(b);
 	}
-
-	//Every proc calculate the matrix
+	//printf("id=%d,local_a=%f,local_b=%f\n", myid, local_a[0], local_b[0]);
+	/*
+	printf("id=%d,local_a=\n", myid);
+	for (i = 0; i < subm; i++)
+	{
+		pa = &(local_a[i*k]);
+		for (j = 0; j < k; j++)
+		{
+			printf("%f ", *pa);
+			pa++;
+		}
+		printf("\n");
+	}
+	printf("id=%d,local_b=\n", myid);
+	for (i = 0; i < subn; i++)
+	{
+		for (j = 0; j < k; j++)
+		{
+			printf("%f ", local_b[i*k + j]);
+		}
+		printf("\n");
+	}
+	*/
 	MPI_Barrier(MPI_COMM_WORLD);
 	local_mp = (double*)malloc(sizeof(double)*subm*subn);
 	p = &(local_mp[0]);
+	//printf("id=%d,local_mp=\n", myid);
 	for (i = 0; i < subm; i++)
 	{
 		for (j = 0; j < subn; j++)
@@ -133,17 +183,19 @@ int main(int argc, char *argv[])
 			*p = 0;
 			for (kk = 0; kk < k; kk++)
 			{
+				//printf("id=%d,%f+=%f*%f\n", myid, *p, *pa, *pb);
 				*p +=*pa * *pb;
 				pa++; pb++;
 			}
+			//printf("%f ", *p);
 			p++; 
 		}
+		//printf("\n");
 	}
 	pa = NULL; pb = NULL; p = NULL;
 	free(local_a);
 	free(local_b);
 	
-	//Gather the output together to proc 0
 	if (myid == 0)
 	{
 		buf = (double*)malloc(sizeof(double)*m*n);
@@ -152,24 +204,36 @@ int main(int argc, char *argv[])
 	MPI_Gather(local_mp, subm*subn, MPI_DOUBLE, buf, subm*subn, MPI_DOUBLE, 0, MPI_COMM_WORLD);
 	if (myid == 0)
 	{
-		//data need to rearange since simple gather is in the wrong order
 		pbuf = &(buf[0]);
 		mp = (double*)malloc(sizeof(double)*m*n);
+		/*
+		printf("buf=\n");
+		for (i = 0; i < numprocs; i++)
+		{
+			for (j = 0; j < subm*subn; j++)
+			{
+				printf("%f ", buf[subm*subn * i + j]);
+			}
+			printf("\n");
+		}
+		*/
 		for (kk = 0; kk < numprocs; kk++)
 		{
+			//printf("l=%d,pos=%d\n", l, (l / blockn)*subm*n + (l%blockn)*subn);
 			p = &(mp[(kk / blockn)*subm*n + (kk%blockn)*subn]);
 			for (i = 0; i < subm; i++)
 			{
 				for (j = 0; j < subn; j++)
 				{
 					*p = *pbuf;
+					//printf("i=%d,j=%d,*p=%.6f,*pbuf=%.6f\n", i, j, *p, *pbuf);
 					pbuf++; p++;
 				}
 				p = p + n - subn;
 			}
 		}
+		//printf("mp=\n%.6f,%.6f,%.6f\n%.6f,%.6f,%.6f\n", mp[0], mp[1], mp[2], mp[3], mp[4], mp[5]);
 
-		//print the results
 		output = fopen("output", "a");
 		fprintf(output, "numprocs=%d,m=%d,n=%d\n", numprocs, m, n);
 		fprintf(output, "blockm=%d,blockn=%d\n", blockm, blockn);
@@ -185,10 +249,10 @@ int main(int argc, char *argv[])
 		}
 		fprintf(output, "\n");
 		fclose(output);
+
 		p = NULL; pbuf = NULL;
 		te = MPI_Wtime();
 
-		//print time
 		time = fopen("time", "a");
 		fprintf(time, "numprocs=%d,m=%d,n=%d\n", numprocs, m, n);
 		fprintf(time, "blockm=%d,blockn=%d\n", blockm, blockn);

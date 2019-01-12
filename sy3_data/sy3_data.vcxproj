@@ -18,18 +18,10 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="..\sy3\A" />
-    <None Include="..\sy3\B" />
-    <None Include="..\sy3\parameter" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\homework3\sy3_0.c" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{793896E4-C890-4168-A5BB-CB445E55E0A2}</ProjectGuid>
-    <RootNamespace>sy30</RootNamespace>
+    <ProjectGuid>{D1B38498-88DB-4391-858B-4C46B61B4761}</ProjectGuid>
+    <RootNamespace>sy3data</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -122,6 +114,9 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\homework3\data.c" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
